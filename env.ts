@@ -1,6 +1,6 @@
 import { z } from 'zod';
 export const envSchema = z.object({
-  DATABASEURL: z.string().url(),
+  DATABASE_URL: z.string().url(),
   PORT: z.coerce.number().optional().default(3333),
 });
 
