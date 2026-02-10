@@ -1,0 +1,53 @@
+  107  npm start dev
+  110  npm install @prisma/client
+  112  npm install @prisma/client
+  113  npm start dev
+  114  npm i
+  115  npm run dev
+  116  npm start run dev
+  119  npm start run dev
+  121  npm start run dev
+  122  sudo npm install prisma @types/node @types/pg --save-dev \nsudo npm install @prisma/client @prisma/adapter-pg pg dotenv
+  123  npm i
+  124  sudo npm i
+  126  npm start run dev
+  129  npm prisma generate
+  132  sudo npm install prisma @types/node @types/pg --save-dev \nsudo npm install @prisma/client @prisma/adapter-pg pg dotenv
+  137  npm start run dev
+  142  npm start run dev
+  145  npm run build
+  146  npm start run dev
+  188  npm start run dev
+  233  npm install --silent
+  234  npm install 
+  242  npm install
+  243  npm i
+  245  sudo npm i
+  247  npm start run dev
+  249  npm install prisma @types/node --save-dev \nnpm install @prisma/client @prisma/adapter-pg dotenv
+  251  sudo npm install prisma @types/node --save-dev \nsudo npm install @prisma/client @prisma/adapter-pg dotenv
+  265  npm start run dev
+  267  npm start run dev
+  270  npm start run dev
+  274  npm start run dev
+  277  npm start run dev
+  279  npm start run dev
+  451  npm i eslint @rocketseat/eslint-config -D
+  454  npm i eslint @rocketseat/eslint-config -D
+  456  npm i eslint @rocketseat/eslint-config -D
+  460  npm start run dev
+  462  npm start run dev
+  463  npm prisma studio
+  465  npm start run dev
+  467  npm i bcryptjs
+  470  npm i @types/bcryptjs -D
+  471* npm start run dev
+  473* npm start run dev
+  475* npm start run dev
+  476* npm i zod
+  478* npm start run dev
+  480* npm i @nestjs/config
+  481* npm start run dev
+  483* npm @nestjs/passport @nestjs/jwt
+  484* npm i @nestjs/passport @nestjs/jwt
+  491* npm start run dev
