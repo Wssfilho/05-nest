@@ -1,5 +1,7 @@
 @baseurl = http://localhost:3333
 @authToken = {{authenticate.response.body.access_token}}
+
+### 
 # @name createAccount
 POST {{baseurl}}/accounts
 Content-Type: application/json
@@ -19,9 +21,21 @@ Content-Type: application/json
   "email": "john@example.com", 
   "password": "password123"
 }
-###
 
+###
 # @name create-question 
 POST {{baseurl}}/questions
+Content-Type: application/json
+authorization: Bearer {{authToken}}
+
+{
+  "title": "What is wethe capital of France?",
+  "content": "I want to know the capital city of France."
+
+}
+
+###
+# @name create-question 
+GET {{baseurl}}/questions?page=1
 Content-Type: application/json
 authorization: Bearer {{authToken}}
