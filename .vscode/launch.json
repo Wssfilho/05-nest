@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/wilsonsantos/Documents/05-nest",
+      "program": "/Users/wilsonsantos/Documents/05-nest/build/Debug/outDebug"
+    }
+  ]
+}
