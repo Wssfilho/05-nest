@@ -6,7 +6,7 @@ Content-Type: application/json
 
 {
   "name": "John",
-  "email": "john@example.com",
+  "email": "johsn@example.com",
   "password": "password123"
 }
 
@@ -19,3 +19,8 @@ Content-Type: application/json
   "email": "john@example.com", 
   "password": "password123"
 }
+###
+
+# @name create-question 
+POST {{baseurl}}/questions
+Content-Type: application/json
