@@ -1,5 +1,8 @@
 import { Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import type { Request } from 'express';
+import { CurrentUser } from 'src/auth/current-user-decorator';
+import type { UserPayload } from 'src/auth/jwt.strategy';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Controller('/questions')
@@ -7,7 +10,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class CreateQuestionController {
   constructor(private prisma: PrismaService) {}
   @Post()
-  handle() {
-    return 'ok';
+  handle(@CurrentUser() user: UserPayload) {
+    console.log(user);
   }
 }
