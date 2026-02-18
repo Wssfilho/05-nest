@@ -11,7 +11,6 @@ function generateUniqueDatabaseURL(schemaId: string) {
 
   const url = new URL(process.env.DATABASE_URL);
   url.searchParams.set('schema', schemaId);
-  url.searchParams.set('options', `-c search_path=${schemaId}`);
   return url.toString();
 }
 
