@@ -8,7 +8,7 @@ Content-Type: application/json
 
 {
   "name": "John",
-  "email": "johsn@example.com",
+  "email": "johssn@example.com",
   "password": "password123"
 }
 
@@ -16,7 +16,6 @@ Content-Type: application/json
 # @name authenticate
 POST {{baseurl}}/sessions
 Content-Type: application/json
-
 {
   "email": "john@example.com", 
   "password": "password123"
