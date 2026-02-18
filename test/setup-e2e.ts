@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { randomUUID } from 'node:crypto';
-import { PrismaClient } from '../src/generated/prisma/client';
 import { execSync } from 'node:child_process';
+import { PrismaClient } from '../src/generated/prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -20,6 +20,7 @@ beforeAll(async () => {
   const databaseURL = generateUniqueDatabaseURL(schemaId);
   console.log(`Using database URL: ${databaseURL}`);
   process.env.DATABASE_URL = databaseURL;
+
   execSync('npm exec prisma migrate deploy');
 });
 
