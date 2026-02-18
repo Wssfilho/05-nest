@@ -18,21 +18,25 @@ const schemaId = randomUUID();
 const databaseURL = generateUniqueDatabaseURL(schemaId);
 
 process.env.DATABASE_URL = databaseURL;
+process.env.DIRECT_URL = databaseURL;
 
 execSync('npm exec prisma migrate deploy', {
   stdio: 'inherit',
   env: {
     ...process.env,
     DATABASE_URL: databaseURL,
+    DIRECT_URL: databaseURL,
   },
 });
 
 const prisma = new PrismaClient({
-  adapter: new PrismaPg({
-    connectionString: databaseURL,
-  }),
+  adapter: new PrismaPg(
+    {
+      connectionString: databaseURL,
+    },
+    { schema: schemaId },
+  ),
 });
-console.log(`Using database URL: ${databaseURL}`);
 
 afterAll(async () => {
   await prisma.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${schemaId}" CASCADE`);
