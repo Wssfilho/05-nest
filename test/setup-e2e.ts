@@ -1,13 +1,9 @@
-import { randomUUID } from 'crypto';
-import { PrismaClient } from '../src/generated/prisma/client';
-import { PrismaPg } from '@prisma/adapter-pg';
-import { Pool } from 'pg';
 import 'dotenv/config';
-import { execSync } from 'child_process';
+import { randomUUID } from 'node:crypto';
+import { PrismaClient } from '../src/generated/prisma/client';
+import { execSync } from 'node:child_process';
 
-let prisma: PrismaClient | undefined;
-// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-let pool: Pool | undefined;
+const prisma = new PrismaClient();
 
 function generateUniqueDatabaseURL(schemaId: string) {
   if (!process.env.DATABASE_URL) {
@@ -22,20 +18,12 @@ const schemaId = randomUUID();
 
 beforeAll(async () => {
   const databaseURL = generateUniqueDatabaseURL(schemaId);
+  console.log(`Using database URL: ${databaseURL}`);
   process.env.DATABASE_URL = databaseURL;
-
   execSync('npm exec prisma migrate deploy');
-
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-  pool = new Pool({ connectionString: databaseURL });
-  prisma = new PrismaClient({ adapter: new PrismaPg(pool) });
 });
 
 afterAll(async () => {
-  if (!prisma) return;
-
   await prisma.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${schemaId}" CASCADE`);
   await prisma.$disconnect();
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-  await pool?.end();
 });
