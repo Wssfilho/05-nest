@@ -1,28 +1,39 @@
 import 'dotenv/config';
-import { randomUUID } from 'node:crypto';
 import { execSync } from 'node:child_process';
+import { randomUUID } from 'node:crypto';
+import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '../src/generated/prisma/client';
-
-const prisma = new PrismaClient();
 
 function generateUniqueDatabaseURL(schemaId: string) {
   if (!process.env.DATABASE_URL) {
     throw new Error('DATABASE_URL environment variable is not set');
   }
+
   const url = new URL(process.env.DATABASE_URL);
   url.searchParams.set('schema', schemaId);
+  url.searchParams.set('options', `-c search_path=${schemaId}`);
   return url.toString();
 }
 
 const schemaId = randomUUID();
+const databaseURL = generateUniqueDatabaseURL(schemaId);
 
-beforeAll(async () => {
-  const databaseURL = generateUniqueDatabaseURL(schemaId);
-  console.log(`Using database URL: ${databaseURL}`);
-  process.env.DATABASE_URL = databaseURL;
+process.env.DATABASE_URL = databaseURL;
 
-  execSync('npm exec prisma migrate deploy');
+execSync('npm exec prisma migrate deploy', {
+  stdio: 'inherit',
+  env: {
+    ...process.env,
+    DATABASE_URL: databaseURL,
+  },
 });
+
+const prisma = new PrismaClient({
+  adapter: new PrismaPg({
+    connectionString: databaseURL,
+  }),
+});
+console.log(`Using database URL: ${databaseURL}`);
 
 afterAll(async () => {
   await prisma.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${schemaId}" CASCADE`);
