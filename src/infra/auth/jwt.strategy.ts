@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
-import { Env } from 'env';
+import { Env } from '@/infra/env';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { z } from 'zod';
 
