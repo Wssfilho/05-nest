@@ -16,6 +16,7 @@ describe('create accountController (E2E)', () => {
     await app.init();
   });
   test('[POST] /accounts - should create a new account', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const response = await request(app.getHttpServer()).post('/accounts').send({
       name: 'John Doe',
       email: 'johndoe@example.com',

@@ -25,6 +25,7 @@ describe('authenticate accountController (E2E)', () => {
       },
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const response = await request(app.getHttpServer()).post('/sessions').send({
       email: 'johndoe@example.com',
       password: '123456',

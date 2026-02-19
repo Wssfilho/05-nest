@@ -6,7 +6,6 @@ import { ZodValidationPipe } from 'src/pipes/zod-validation-pipe';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { z } from 'zod';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const createQuestionBodySchema = z.object({
   title: z.string(),
   content: z.string(),
